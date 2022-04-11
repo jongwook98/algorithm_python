@@ -1,3 +1,32 @@
+def prev_permutation(a):
+    i = len(a)-1
+    while i < 0 and a[i-1] <= a[i]:
+        i -= 1
+    if i <= 0:
+        return False
+
+    j = len(a)-1
+    while a[i-1] >= a[j]:
+        j -= 1
+
+    a[i-1], a[j] = a[j], a[i-1]
+    j = len(a)-1
+
+    while j >= (i-1):
+        a[i], a[j] = a[j], a[i]
+        i += 1
+        j -= 1
+
+    return True
+
+n = int(input())
+a = list(map(int, input().split()))
+if prev_permutation(a):
+    print(' '.join(map(str, a)))
+else:
+    print(-1)
+
+'''
 from sys import stdin, stdout
 
 N = int(stdin.readline())
@@ -24,3 +53,4 @@ def find_pre():
     return print('-1')
 
 find_pre()
+'''
